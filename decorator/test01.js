@@ -18,6 +18,7 @@ console.log(Model1.prototype.getData());
 function wrap (Model, key) {
     // 获取Class的对应的原型
     let target = Model.prototype;
+    console.log("target=> ", target);
 
     // 获取函数对应的描述符
     let descriptor = Object.getOwnPropertyDescriptor(target, key);
