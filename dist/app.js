@@ -16,6 +16,7 @@ var R = require("ramda");
 var _require = require("path"),
     resolve = _require.resolve;
 
+//#region 使用函数式编程, 加载middlewares目录下的所有的中间件
 // 定义中间件的数组
 
 
@@ -26,7 +27,7 @@ var useMiddlewares = function useMiddlewares(app) {
         return initWith(app);
     }), require, function (name) {
         return resolve(__dirname, "./middlewares/" + name);
-    }))(MIDDLEWARES);
+    }), MIDDLEWARES);
 };
 
 (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
@@ -51,3 +52,19 @@ var useMiddlewares = function useMiddlewares(app) {
         }
     }, _callee, undefined);
 }))();
+//#endregion
+
+//#region 普通的使用中间件
+// const app = new Koa();
+//
+// app.use(async (ctx, next) => {
+//     // import { router } from "./middlewares/router.js";
+//     const { router } = require("./middlewares/router.js");
+//     router(app);
+//     next();
+// });
+//
+// app.listen(8964, "127.0.0.1", () => {
+//     console.log("Server is Running");
+// });
+//#endregion
